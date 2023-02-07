@@ -74,7 +74,7 @@ class WowGameDataApi(Api):
         """
         resource = "/data/wow/auctions/commodities"
         query_params = {"namespace": f"dynamic-{region}", "locale": locale}
-        return super().get_resource(resource, query_params)
+        return super().get_resource(resource, region, query_params)
 
     def get_auctions(self, region, locale, connected_realm_id):
         """Return all active auctions for a connected realm."""

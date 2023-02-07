@@ -105,6 +105,18 @@ class TestWowGameDataApi:
             params=params,
         )
 
+    def test_get_commodities(self, success_response_mock):
+        self.api.wow.game_data.get_commodities("us", "en_US")
+        params = {
+            "namespace": "dynamic-us",
+            "locale": "en_US",
+            "access_token": "access_token",
+        }
+        success_response_mock.assert_called_with(
+            "https://us.api.blizzard.com/data/wow/auctions/commodities",
+            params=params,
+        )
+
     # Azerite Essence API
 
     def test_get_azerite_essences_index(self, success_response_mock):
