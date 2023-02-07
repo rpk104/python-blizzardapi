@@ -72,7 +72,7 @@ class WowGameDataApi(Api):
         """
         Returns all active commodities for a specific region.
         """
-        resource = f"/data/wow/auctions/commodities/"
+        resource = "/data/wow/auctions/commodities"
         query_params = {"namespace": f"dynamic-{region}", "locale": locale}
         return super().get_resource(resource, query_params)
 
