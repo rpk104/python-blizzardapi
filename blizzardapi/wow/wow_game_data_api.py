@@ -237,9 +237,19 @@ class WowGameDataApi(Api):
         query_params = {"namespace": namespace, "locale": locale}
         return super().get_resource(resource, region, query_params)
 
-    def get_item(self, region, locale, item_id, is_classic=False, **kwargs):
+    def get_item(self, region, locale, item_id, is_classic=False):
         """Return an item by ID."""
         resource = f"/data/wow/item/{item_id}"
+        namespace = f"static-classic-{region}" if is_classic else f"static-{region}"
+        query_params = {"namespace": namespace, "locale": locale}
+        query_params.update(**kwargs)
+        return super().get_resource(resource, region, query_params)
+
+    def get_items_extended(self, region, locale, is_classic=False, **kwargs):
+        """Return all item ids"""
+        # Example
+        # https: // us.api.blizzard.com / data / wow / search / item?namespace = static - us & locale = en_US & id = 194768
+        resource = f"/data/wow/search/item"
         namespace = f"static-classic-{region}" if is_classic else f"static-{region}"
         query_params = {"namespace": namespace, "locale": locale}
         query_params.update(**kwargs)
