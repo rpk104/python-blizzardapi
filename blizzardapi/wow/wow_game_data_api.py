@@ -237,11 +237,12 @@ class WowGameDataApi(Api):
         query_params = {"namespace": namespace, "locale": locale}
         return super().get_resource(resource, region, query_params)
 
-    def get_item(self, region, locale, item_id, is_classic=False):
+    def get_item(self, region, locale, item_id, is_classic=False, **kwargs):
         """Return an item by ID."""
         resource = f"/data/wow/item/{item_id}"
         namespace = f"static-classic-{region}" if is_classic else f"static-{region}"
         query_params = {"namespace": namespace, "locale": locale}
+        query_params.update(**kwargs)
         return super().get_resource(resource, region, query_params)
 
     def get_item_media(self, region, locale, item_id, is_classic=False):
