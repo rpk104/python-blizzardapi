@@ -242,7 +242,6 @@ class WowGameDataApi(Api):
         resource = f"/data/wow/item/{item_id}"
         namespace = f"static-classic-{region}" if is_classic else f"static-{region}"
         query_params = {"namespace": namespace, "locale": locale}
-        query_params.update(**kwargs)
         return super().get_resource(resource, region, query_params)
 
     def get_items_extended(self, region, locale, is_classic=False, **kwargs):
